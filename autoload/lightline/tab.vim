@@ -11,7 +11,8 @@ set cpo&vim
 function! lightline#tab#filename(n) abort
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
-  let _ = expand('#'.buflist[winnr - 1].':t')
+  let arghead = '#'.buflist[winnr - 1]
+  let _ = expand(arghead.':p:h:t').'/'.expand(arghead.':t')
   return _ !=# '' ? _ : '[No Name]'
 endfunction
 
